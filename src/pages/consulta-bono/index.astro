@@ -1,0 +1,259 @@
+﻿---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Área clientes OficioVolt | Bono anual y seguimiento" description="Consulta tu bono anual, revisa tu estado, identifica tu cuenta y comunica incidencias con OficioVolt." lang="es" canonical="/consulta-bono/">
+  <style>
+    .client-summary {
+      margin: 8px 0 26px;
+      border: 1px solid rgba(148,163,184,0.28);
+      background: rgba(255,255,255,0.7);
+      border-radius: 22px;
+      padding: 22px 20px;
+      box-shadow: 0 14px 28px rgba(15,23,42,0.04);
+    }
+    .client-summary p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .client-summary-top {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .client-badge {
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(148,163,184,0.25);
+      border-radius: 16px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .client-badge span {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 800;
+    }
+    .client-badge strong {
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      color: var(--dark);
+    }
+    .client-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .professional-form {
+      padding: 24px 26px;
+    }
+    .professional-form h3,
+    .pale-card h3 {
+      margin-top: 0;
+      margin-bottom: 18px;
+    }
+    .client-form {
+      display: grid;
+      gap: 18px;
+    }
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+    .field span {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .field input,
+    .field select {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid rgba(148,163,184,0.42);
+      border-radius: 12px;
+      background: #fff;
+      padding: 0 14px;
+      font: inherit;
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .field input:focus,
+    .field select:focus {
+      border-color: rgba(56,189,248,0.7);
+      box-shadow: 0 0 0 4px rgba(56,189,248,0.08);
+    }
+    .form-actions {
+      margin-top: 4px;
+    }
+    .form-actions .btn {
+      min-width: 170px;
+    }
+    .pale-card {
+      padding: 24px 26px;
+    }
+    .pale-card .list {
+      margin-top: 12px;
+      margin-bottom: 16px;
+    }
+    .info-box {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(148,163,184,0.3);
+      border-radius: 16px;
+      padding: 16px 18px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    @media (max-width: 760px) {
+      .client-summary-top,
+      .field-row,
+      .client-grid {
+        grid-template-columns: 1fr;
+      }
+      .professional-form,
+      .pale-card {
+        padding: 20px 18px;
+      }
+    }
+  </style>
+
+  <section class="hero narrow-hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Área clientes</span>
+        <h1>Consulta y seguimiento de tu bono anual</h1>
+        <p class="lead">Accede a la información del bono, identifica al titular, revisa el estado de consumo y comunica incidencias con el número de cliente y el código de autorización.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#acceso">Entrar al área</a>
+          <a class="btn btn-light" href="/bono-anual-oficiovolt/">Ver bono anual</a>
+        </div>
+      </div>
+      <aside class="quick-card">
+        <h3>Información clave</h3>
+        <p>El bono tiene una validez de 12 meses, un consumo mínimo por salida y materiales aparte salvo acuerdo previo.</p>
+        <div class="stat-grid two-up">
+          <div class="stat">
+            <div class="label">Bono</div>
+            <div class="value">10h/año</div>
+          </div>
+          <div class="stat">
+            <div class="label">Precio</div>
+            <div class="value">249 €</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="acceso" class="section">
+    <div class="container">
+      <div class="client-summary">
+        <div class="client-summary-top">
+          <div class="client-badge">
+            <span>Bono</span>
+            <strong>10h/año</strong>
+          </div>
+          <div class="client-badge">
+            <span>Precio</span>
+            <strong>249 €</strong>
+          </div>
+        </div>
+        <p>El bono tiene una validez de 12 meses, un consumo mínimo por salida y materiales aparte salvo acuerdo previo.</p>
+      </div>
+
+      <div class="client-grid">
+        <div class="contact-card professional-form">
+          <h3>Acceso al área de clientes</h3>
+          <form class="client-form" method="post" action="/gestion-oficiovolt/">
+            <div class="field-row">
+              <label class="field">
+                <span>Tipo de cliente</span>
+                <select name="clientType">
+                  <option value="titular">Titular</option>
+                  <option value="autorizado">Persona autorizada</option>
+                  <option value="nuevo">Cliente nuevo</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Número de cliente</span>
+                <input name="clientNumber" placeholder="OV-2026-XXXX" />
+              </label>
+            </div>
+
+            <div class="field-row">
+              <label class="field">
+                <span>Código de autorización</span>
+                <input name="authCode" placeholder="Introduce tu código" />
+              </label>
+              <label class="field">
+                <span>Nombre del titular o autorizado</span>
+                <input name="name" placeholder="Nombre completo" />
+              </label>
+            </div>
+
+            <label class="field">
+              <span>Dirección del servicio</span>
+              <input name="address" placeholder="Calle, número, localidad y provincia" />
+            </label>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Entrar</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="contact-card pale-card">
+          <h3>Qué puedes consultar</h3>
+          <ul class="list">
+            <li>Saldo de horas del bono anual.</li>
+            <li>Histórico de intervenciones y consumos.</li>
+            <li>Solicitudes de servicio por zona y urgencia.</li>
+            <li>Personas autorizadas y uso compartido del bono.</li>
+            <li>Revisiones, materiales y fecha de renovación.</li>
+          </ul>
+          <div class="info-box">
+            <strong>Importante:</strong> la validación depende del número de cliente y del código de autorización. Si no tienes acceso, pide la confirmación del titular o usa el formulario principal para contactar con OficioVolt.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="kicker">Incidencias con bono</span>
+      <h2 class="title">Comunica una incidencia con tu bono</h2>
+      <p class="subtitle">Y si necesitas atender una avería o consulta con tu bono, indica el código, la zona y la descripción de la incidencia para que se valore correctamente.</p>
+      <div class="cards three-cols">
+        <article class="card">
+          <h3>1. Identifícate</h3>
+          <p>Escribe el número de cliente y el código de autorización con el nombre del titular o autorizado.</p>
+        </article>
+        <article class="card">
+          <h3>2. Indica la zona</h3>
+          <p>Señala la dirección donde se va a prestar la intervención, la urgencia y el tipo de servicio.</p>
+        </article>
+        <article class="card">
+          <h3>3. Describe la incidencia</h3>
+          <p>Añade foto o vídeo si es posible para valorar si corresponde visita, urgencia o intervención rápida.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+

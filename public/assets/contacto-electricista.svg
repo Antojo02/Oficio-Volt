@@ -1,0 +1,37 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <g opacity="0.25">
+    <circle cx="180" cy="160" r="240" fill="#38BDF8"/>
+    <circle cx="920" cy="220" r="300" fill="#F59E0B"/>
+    <circle cx="820" cy="980" r="260" fill="#22C55E"/>
+  </g>
+  <rect x="132" y="120" width="936" height="960" rx="48" fill="rgba(7,12,20,0.22)" stroke="rgba(255,255,255,0.18)"/>
+  <g opacity="0.9">
+    <rect x="220" y="205" width="760" height="530" rx="32" fill="#0B1320" stroke="rgba(255,255,255,0.2)"/>
+    <path d="M554 270H716C733.673 270 748 284.327 748 302V525C748 542.673 733.673 557 716 557H554C536.327 557 522 542.673 522 525V302C522 284.327 536.327 270 554 270Z" fill="#101B2B" stroke="rgba(148,163,184,0.35)"/>
+    <path d="M650 270V557" stroke="rgba(148,163,184,0.35)" stroke-width="4"/>
+    <path d="M522 414H748" stroke="rgba(148,163,184,0.35)" stroke-width="4"/>
+    <path d="M586 483L628 440L664 476L706 420" stroke="#F59E0B" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="586" cy="483" r="14" fill="#FBBF24"/>
+    <circle cx="628" cy="440" r="14" fill="#FBBF24"/>
+    <circle cx="664" cy="476" r="14" fill="#FBBF24"/>
+    <circle cx="706" cy="420" r="14" fill="#FBBF24"/>
+    <rect x="302" y="790" width="596" height="134" rx="26" fill="#0F172A" stroke="rgba(255,255,255,0.12)"/>
+    <path d="M342 856H355" stroke="#F8FAFC" stroke-width="12" stroke-linecap="round"/>
+    <rect x="382" y="836" width="220" height="26" rx="13" fill="#F8FAFC" opacity="0.25"/>
+    <rect x="626" y="836" width="214" height="26" rx="13" fill="#F8FAFC" opacity="0.12"/>
+  </g>
+  <g>
+    <rect x="832" y="745" width="110" height="120" rx="18" fill="#F59E0B"/>
+    <path d="M870 768V835" stroke="#0F172A" stroke-width="12" stroke-linecap="round"/>
+    <path d="M845 784H895" stroke="#0F172A" stroke-width="12" stroke-linecap="round"/>
+    <path d="M918 804L950 772" stroke="#F8FAFC" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="1060" y2="1120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E2E8F0"/>
+      <stop offset="0.5" stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#DBEAFE"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Contacto | OficioVolt" description="Solicita la ayuda de OficioVolt para urgencias eléctricas, reparaciones, domótica, telecomunicaciones y mejoras en Murcia y alrededores." canonical="/contacto/">
+  <section class="section section-alt" style="padding-top: 72px;">
+    <div class="container">
+      <span class="kicker">Contacto</span>
+      <h1 class="title">Cuéntame qué necesitas</h1>
+      <p class="subtitle">Déjame tus datos y una explicación breve. Si puedes, añade foto o vídeo. Así será más fácil indicarte la mejor opción para Murcia, Molina de Segura, Fortuna, Alcantarilla, Blanca, Abarán, Cieza y alrededores: visita, urgencia, ampliación, intervención rápida o bono.</p>
+
+      <div class="contact-grid contact-grid-visual contact-grid-two">
+        <div class="contact-visual">
+          <div class="contact-visual-frame">
+            <img src="/assets/contacto-electricista.svg" alt="Trabajo eléctrico profesional vertical" />
+            <div class="contact-visual-overlay">
+              <strong>Cuéntame qué necesitas</strong>
+              <p>Envía una foto o vídeo si puedes — ayuda a valorar la mejor opción.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <div class="contact-card">
+            <h3>Solicitud</h3>
+            <p class="subtitle">Rellena lo mínimo: servicio, urgencia, zona y contacto. Si puedes, añade foto o vídeo.</p>
+            <form id="request-form" class="form" method="post" action="/send.php" data-greeting="Hola, contacto desde la web de OficioVolt." data-labels='{"serviceType":"Tipo de servicio","urgency":"Nivel de urgencia","name":"Nombre","phone":"Teléfono","email":"Email","area":"Zona","media":"Foto o vídeo","message":"Mensaje"}'>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <label><span>Tipo de servicio</span><select name="serviceType"><option value="visita">Visita técnica</option><option value="intervencion">Intervención rápida</option><option value="urgencia">Urgencia</option><option value="ampliacion">Ampliación / mejora</option><option value="bono">Bono anual</option></select></label>
+                <label><span>Urgencia</span><select name="urgency"><option value="baja">Baja</option><option value="media">Media</option><option value="alta">Alta</option></select></label>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <label><span>Nombre</span><input name="name" required /></label>
+                <label><span>Teléfono</span><input name="phone" required /></label>
+              </div>
+              <label><span>Email</span><input type="email" name="email" /></label>
+              <label><span>Zona</span><input name="area" required /></label>
+              <label><span>Foto o vídeo (enlace)</span><input name="media" /></label>
+              <label><span>Mensaje</span><textarea name="message" rows="4" required></textarea></label>
+              <div class="form-actions"><button id="wa-send" type="button" class="btn btn-light">Enviar por WhatsApp</button><button type="submit" class="btn btn-primary">Enviar por correo</button></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

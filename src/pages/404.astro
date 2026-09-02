@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <main class="section-alt main-center" style="padding:64px 0;">
+    <div class="container" style="display:grid;grid-template-columns:420px 1fr;gap:28px;align-items:center;">
+      <div style="display:flex;align-items:center;justify-content:center;">
+        <div style="width:360px;border-radius:24px;overflow:hidden;box-shadow:0 24px 48px rgba(15,23,42,0.12);">
+          <img src="/assets/oficiovolt-icon.png" alt="OficioVolt" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+      </div>
+
+      <div>
+        <div class="pill" style="display:inline-block;margin-bottom:12px;">Error 404</div>
+        <h1 class="title">Vaya — parece que no existe esta página</h1>
+        <p class="lead">Ha ocurrido un problema o la página que buscas ya no está disponible. Puedes volver al inicio o visitar alguna de las secciones más útiles.</p>
+
+        <div class="actions" style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;">
+          <a class="btn btn-primary" href="/">Volver al inicio</a>
+          <a class="btn btn-light" href="/bono-anual-oficiovolt/">Bono anual</a>
+          <a class="btn btn-light" href="/zonas-de-servicio/">Zonas</a>
+        </div>
+
+        <div style="margin-top:20px;color:var(--muted);font-size:14px;">Si crees que esto es un error, <a href="/contacto/">contáctanos</a> y lo revisamos.</div>
+      </div>
+    </div>
+  </main>
+</Layout>
