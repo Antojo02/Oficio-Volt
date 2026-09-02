@@ -178,37 +178,17 @@ import Layout from '../../layouts/Layout.astro';
       <div class="client-grid">
         <div class="contact-card professional-form">
           <h3>Acceso al área de clientes</h3>
-          <form class="client-form" method="post" action="/gestion-oficiovolt/">
+          <form class="client-form" method="post" action="/consulta-bono/index.php">
             <div class="field-row">
               <label class="field">
-                <span>Tipo de cliente</span>
-                <select name="clientType">
-                  <option value="titular">Titular</option>
-                  <option value="autorizado">Persona autorizada</option>
-                  <option value="nuevo">Cliente nuevo</option>
-                </select>
+                <span>Código de bono</span>
+                <input name="codigo" placeholder="OV-2026-XXXX" autocomplete="username" required />
               </label>
               <label class="field">
-                <span>Número de cliente</span>
-                <input name="clientNumber" placeholder="OV-2026-XXXX" />
+                <span>PIN</span>
+                <input type="password" name="pin" placeholder="Introduce tu PIN" autocomplete="current-password" required />
               </label>
             </div>
-
-            <div class="field-row">
-              <label class="field">
-                <span>Código de autorización</span>
-                <input name="authCode" placeholder="Introduce tu código" />
-              </label>
-              <label class="field">
-                <span>Nombre del titular o autorizado</span>
-                <input name="name" placeholder="Nombre completo" />
-              </label>
-            </div>
-
-            <label class="field">
-              <span>Dirección del servicio</span>
-              <input name="address" placeholder="Calle, número, localidad y provincia" />
-            </label>
 
             <div class="form-actions">
               <button type="submit" class="btn btn-primary">Entrar</button>

@@ -30,11 +30,11 @@ import Layout from '../../layouts/Layout.astro';
                 <label><span>Urgencia</span><select name="urgency"><option value="baja">Baja</option><option value="media">Media</option><option value="alta">Alta</option></select></label>
               </div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-                <label><span>Nombre</span><input name="name" required /></label>
-                <label><span>Teléfono</span><input name="phone" required /></label>
+                <label><span>Nombre</span><input name="name" autocomplete="name" required /></label>
+                <label><span>Teléfono</span><input name="phone" type="tel" autocomplete="tel" required /></label>
               </div>
-              <label><span>Email</span><input type="email" name="email" /></label>
-              <label><span>Zona</span><input name="area" required /></label>
+              <label><span>Email</span><input type="email" name="email" autocomplete="email" required /></label>
+              <label><span>Zona</span><input name="area" autocomplete="address-level2" required /></label>
               <label><span>Foto o vídeo (enlace)</span><input name="media" /></label>
               <label><span>Mensaje</span><textarea name="message" rows="4" required></textarea></label>
               <div class="form-actions"><button id="wa-send" type="button" class="btn btn-light">Enviar por WhatsApp</button><button type="submit" class="btn btn-primary">Enviar por correo</button></div>

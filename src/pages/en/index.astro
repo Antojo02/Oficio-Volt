@@ -146,10 +146,10 @@ import Layout from '../../layouts/Layout.astro';
             <label><span>Código de autorización</span><input name="authCode" /></label>
             <label><span>Tipo de servicio</span><select name="serviceType"><option value="visita">Technical visit</option><option value="intervencion">Quick intervention</option><option value="urgencia">Urgent help</option><option value="ampliacion">Upgrade</option><option value="bono">Annual plan</option></select></label>
             <label><span>Urgencia</span><select name="urgency"><option value="baja">Low</option><option value="media">Medium</option><option value="alta">High</option></select></label>
-            <label><span>Nombre</span><input name="name" required /></label>
-            <label><span>Teléfono</span><input name="phone" required /></label>
-            <label><span>Email</span><input type="email" name="email" /></label>
-            <label><span>Zona</span><input name="area" required /></label>
+            <label><span>Nombre</span><input name="name" autocomplete="name" required /></label>
+            <label><span>Teléfono</span><input name="phone" type="tel" autocomplete="tel" required /></label>
+            <label><span>Email</span><input type="email" name="email" autocomplete="email" required /></label>
+            <label><span>Zona</span><input name="area" autocomplete="address-level2" required /></label>
             <label><span>Tipo de vivienda / local</span><input name="propertyType" /></label>
             <label><span>Foto o vídeo</span><input name="media" /></label>
             <label><span>Mensaje</span><textarea name="message" rows="5" required></textarea></label>

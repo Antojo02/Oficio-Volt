@@ -3,7 +3,8 @@ const {
   title = 'OficioVolt',
   description = 'OficioVolt · Electricista en Murcia y alrededores para urgencias, mejoras y telecom.',
   lang = 'es',
-  canonical = '/'
+  canonical = '/',
+  robots = 'index,follow,max-image-preview:large'
 } = Astro.props;
 ---
 
@@ -14,12 +15,17 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="robots" content={robots} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="OficioVolt" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:url" content={"https://oficiovolt.es" + canonical} />
     <meta property="og:image" content="/assets/oficiovolt-logo-brand.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/assets/oficiovolt-logo-brand.png" />
     <link rel="canonical" href={"https://oficiovolt.es" + canonical} />
     <link rel="icon" type="image/png" href="/assets/oficiovolt-icon.png" />
     <style is:global>
@@ -132,6 +138,24 @@ const {
 
       /* helper to center main content vertically when desired */
       .main-center { display: flex; align-items: center; }
+      .error-page { min-height: calc(100vh - 120px); padding: 64px 0; }
+      .error-page-inner {
+        display: grid;
+        grid-template-columns: minmax(260px, 420px) minmax(0, 1fr);
+        gap: clamp(28px, 5vw, 72px);
+        align-items: center;
+      }
+      .error-visual { display: flex; justify-content: center; }
+      .error-visual img {
+        display: block;
+        width: min(100%, 360px);
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 24px;
+        box-shadow: 0 24px 48px rgba(15,23,42,0.12);
+      }
+      .error-copy { min-width: 0; }
+      .error-copy .title { max-width: 680px; }
       .topbar {
         position: sticky;
         top: 0;
@@ -286,6 +310,7 @@ const {
       .btn-primary { background: linear-gradient(135deg, var(--amber), var(--amber-strong)); color: #111827; box-shadow: 0 14px 34px rgba(245, 158, 11, 0.25); }
       .btn-light { background: #fff; color: var(--text); border-color: var(--line); }
       .btn-green { background: var(--greenbg); color: #065f46; border-color: var(--greenline); }
+      .btn-bono-access { background: var(--amber-strong); color: #fff; border-color: var(--amber-strong); }
       .hero {
         padding: 62px 0 42px;
         background:
@@ -711,6 +736,7 @@ const {
       }
       .service-card .cta {
         margin-top: auto;
+        padding-top: 22px;
         display: inline-flex;
         align-items: center;
         color: var(--dark);
@@ -1264,6 +1290,11 @@ const {
         }
         .card, .service-card { min-height: 0; }
         .service-card { padding: 18px; border-radius: 18px; }
+        .error-page { min-height: 0; padding: 34px 0 48px; }
+        .error-page-inner { grid-template-columns: 1fr; gap: 28px; }
+        .error-visual img { width: min(100%, 280px); border-radius: 20px; }
+        .error-copy { text-align: center; }
+        .error-copy .actions { justify-content: center; }
         .price { min-height: 0; }
         .actions, .form-actions { align-items: stretch; }
         .actions .btn, .form-actions .btn, .cta-banner-actions .btn { width: 100%; }
@@ -1418,15 +1449,14 @@ const {
             <a href="/">Inicio</a>
             <a href="/bono-anual-oficiovolt/">Bono anual</a>
             <a href="/consulta-bono/">Área clientes</a>
-            <a href="/#terms">Condiciones</a>
           </nav>
         </div>
 
         <div>
           <div class="footer-section-title">Contacto</div>
           <div class="contact-list">
-            <div>Teléfono: 675 970 679</div>
-            <div>Correo: info@oficiovolt.es</div>
+            <div>675 970 679</div>
+            <div>info@oficiovolt.es</div>
             <div>Calle Asturias, Polígono La Capellanía, Archena</div>
           </div>
         </div>
@@ -1466,11 +1496,6 @@ const {
     </div>
 
     <script is:inline>
-      // Redirect any /en/* requests to site root while English is unavailable
-      if (typeof window !== 'undefined' && window.location && window.location.pathname && window.location.pathname.startsWith('/en')) {
-        window.location.replace('/');
-      }
-
       const COOKIE_CONSENT_KEY = 'oficiovolt_cookie_consent';
       function setCookieConsent(accepted) {
         try {
@@ -1625,6 +1650,7 @@ const {
         const waButton = document.getElementById('wa-send');
         if (form && waButton) {
           waButton.addEventListener('click', () => {
+            if (!form.reportValidity()) return;
             const data = new FormData(form);
             const labels = JSON.parse(form.dataset.labels || '{}');
             const order = ['clientType','clientNumber','authCode','serviceType','urgency','name','phone','email','area','propertyType','media','message'];
@@ -1636,6 +1662,14 @@ const {
             window.open('https://wa.me/34675970679?text=' + encodeURIComponent(lines.join('\n')), '_blank');
           });
         }
+        document.querySelectorAll('form').forEach((currentForm) => {
+          currentForm.addEventListener('submit', (event) => {
+            if (!currentForm.checkValidity()) {
+              event.preventDefault();
+              currentForm.reportValidity();
+            }
+          });
+        });
         // Footer year handling
         const yearEl = document.getElementById('footer-year');
         if (yearEl) yearEl.textContent = new Date().getFullYear();
