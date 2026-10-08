@@ -24,6 +24,9 @@ CAMBIOS APLICADOS
 	ver su ficha y simular una actuacion sin ejecutar PHP ni tocar datos reales.
 - Vista /demo-cliente/: recorrido visual del cliente con saldo y actuaciones de
 	ejemplo, enlazado desde el panel demo para evitar depender del PHP real.
+- Precios: las tarjetas españolas de 49 €, 79 € y 99 € enlazan ahora con sus
+	checkouts Stripe correspondientes. El bono de 249 € mantiene su página
+	informativa hasta disponer de su enlace Stripe real.
 - .htaccess en la salida Astro: desactiva listados, aplica cabeceras y bloquea
 	archivos sensibles cuando se publique en Apache/IONOS.
 - .htaccess en la raiz y tools: protege configuraciones y herramientas CLI si
