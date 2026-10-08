@@ -26,7 +26,7 @@ CAMBIOS APLICADOS
 	archivos sensibles cuando se publique en Apache/IONOS.
 - .htaccess en la raiz y tools: protege configuraciones y herramientas CLI si
 	se sube el proyecto completo a un hosting Apache.
-- Build Astro validado correctamente con 32 paginas generadas.
+- Build Astro validado correctamente con 33 paginas generadas.
 
 SECRETOS Y PRODUCCION
 ---------------------
@@ -62,14 +62,13 @@ PENDIENTES DE SIGUIENTE ITERACION
 - Saldo basado en movimientos auditables, no en edicion manual arbitraria.
 - Auditoria de login, PIN, saldo, estado y movimientos.
 - Webhook Stripe firmado e idempotente antes de activar bonos por pago.
-- Actualizar Astro y dependencias en staging, nunca con audit fix force directo.
-- Dividir Layout.astro, centralizar traducciones y generar sitemap validado.
-- Revisar consentimiento de cookies, rechazo, foco y reduced-motion.
-- CI con build, deteccion de secretos, lint PHP y smoke tests.
+- Dividir Layout.astro y centralizar traducciones.
+- Ejecutar lint PHP y smoke tests cuando exista un runtime PHP funcional.
+- Crear webhook Stripe firmado e idempotente antes de activar bonos por pago.
 
 VALIDACION REALIZADA
 --------------------
-- npm run build: correcto; 32 paginas generadas.
+- npm run build: correcto; 33 paginas generadas.
 - Layout y paginas Astro modificadas: sin errores detectados.
 - HTML: noindex en consulta-bono y JSON-LD presente.
 - Demo del panel: /gestion-oficiovolt/ generada correctamente como pagina 33.
@@ -78,8 +77,13 @@ VALIDACION REALIZADA
 - Accesibilidad: las animaciones y transiciones respetan prefers-reduced-motion.
 - Dependencias: Astro actualizado a 7.3.7 y npm audit fix deja 0
 	vulnerabilidades conocidas en dependencias de produccion.
-- CI: .github/workflows/validate.yml ejecuta npm ci, npm audit y npm run build
+- Sitemap: npm run check:sitemap valida 26 rutas publicas y excluye las
+	rutas privadas/noindex.
+- CI: .github/workflows/validate.yml ejecuta npm ci, npm audit, build y sitemap
 	en pushes y pull requests sobre main.
+- database/schema.example.sql: esquema de referencia con indices, claves
+	foraneas, codigo unico, estados y tabla de auditoria; no es una migracion
+	automatica de la base de datos real.
 - PHP: pendiente de lint local; PHP 8.2/8.4 instalados pero Windows mantiene
 	un runtime Visual C++ antiguo incompatible. Hay que actualizar ese runtime
 	con permisos del sistema o ejecutar el lint en CI/IONOS.
