@@ -1242,6 +1242,9 @@ const organizationSchema = {
         color: rgba(255,255,255,0.72);
       }
       .footer-copy { justify-self: start; }
+      .footer-credit { justify-self: center; color: rgba(219,228,240,0.72); font-size: 12px; }
+      .footer-credit a { color: #fff; font-weight: 800; }
+      .footer-credit a:hover { color: #fbbf24; }
       .footer-policies { justify-self: end; display: flex; gap: 18px; align-items: center; }
       /* language selector removed from footer */
       @media (max-width: 960px) {
@@ -1349,6 +1352,7 @@ const organizationSchema = {
           gap: 12px;
         }
         .footer-copy,
+        .footer-credit,
         .footer-policies { justify-self: auto; }
         .footer-policies {
           justify-content: center;
@@ -1492,6 +1496,7 @@ const organizationSchema = {
 
       <div class="container footer-bottom">
         <div class="footer-copy">© <span id="footer-year"></span> OficioVolt</div>
+        <div class="footer-credit">Diseño y desarrollo web por <a href="https://www.primewebcrafts.com/" target="_blank" rel="noopener noreferrer">PRIME WEB</a></div>
 
         <nav class="footer-policies">
           <a href="/politica-proteccion-datos/">Política de protección de datos</a>

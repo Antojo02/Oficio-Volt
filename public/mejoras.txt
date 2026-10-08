@@ -27,6 +27,10 @@ CAMBIOS APLICADOS
 - Precios: las tarjetas españolas de 49 €, 79 € y 99 € enlazan ahora con sus
 	checkouts Stripe correspondientes. El bono de 249 € mantiene su página
 	informativa hasta disponer de su enlace Stripe real.
+- Panel PHP: actualizar bono y añadir trabajo verifican ahora el código junto
+	con el ID, evitando operar sobre otro bono mediante una petición manipulada.
+- Panel PHP: el saldo disponible no puede superar las horas iniciales menos las
+	horas ya usadas.
 - .htaccess en la salida Astro: desactiva listados, aplica cabeceras y bloquea
 	archivos sensibles cuando se publique en Apache/IONOS.
 - .htaccess en la raiz y tools: protege configuraciones y herramientas CLI si
