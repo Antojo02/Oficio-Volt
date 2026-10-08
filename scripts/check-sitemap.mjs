@@ -6,6 +6,7 @@ const sitemapPath = join(process.cwd(), 'public', 'sitemap.xml');
 const excludedRoutes = new Set([
   '/404/',
   '/consulta-bono/',
+  '/demo-cliente/',
   '/gestion-oficiovolt/',
   '/bono-confirmado/',
   '/intervencion-rapida-confirmado/',

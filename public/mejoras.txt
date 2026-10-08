@@ -22,11 +22,13 @@ CAMBIOS APLICADOS
 - includes/.htaccess: bloquea acceso web directo a librerias y configuracion.
 - Demo interactiva en /gestion-oficiovolt/: permite seleccionar cada bono,
 	ver su ficha y simular una actuacion sin ejecutar PHP ni tocar datos reales.
+- Vista /demo-cliente/: recorrido visual del cliente con saldo y actuaciones de
+	ejemplo, enlazado desde el panel demo para evitar depender del PHP real.
 - .htaccess en la salida Astro: desactiva listados, aplica cabeceras y bloquea
 	archivos sensibles cuando se publique en Apache/IONOS.
 - .htaccess en la raiz y tools: protege configuraciones y herramientas CLI si
 	se sube el proyecto completo a un hosting Apache.
-- Build Astro validado correctamente con 33 paginas generadas.
+- Build Astro validado correctamente con 34 paginas generadas.
 
 SECRETOS Y PRODUCCION
 ---------------------
@@ -68,7 +70,7 @@ PENDIENTES DE SIGUIENTE ITERACION
 
 VALIDACION REALIZADA
 --------------------
-- npm run build: correcto; 33 paginas generadas.
+- npm run build: correcto; 34 paginas generadas.
 - Layout y paginas Astro modificadas: sin errores detectados.
 - HTML: noindex en consulta-bono y JSON-LD presente.
 - Demo del panel: /gestion-oficiovolt/ generada correctamente como pagina 33.
