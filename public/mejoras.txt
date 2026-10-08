@@ -1,0 +1,93 @@
+OFICIOVOLT - REGISTRO DE MEJORAS Y DESPLIEGUE EN IONOS
+=======================================================
+
+Fecha: 2026-10-08
+Estado: primera iteracion aplicada y validada en Astro.
+
+ARQUITECTURA
+------------
+IONOS sera el hosting principal. Publicar el contenido generado de
+astro-site/dist junto a send.php, consulta-bono, gestion-oficiovolt e
+includes. Vercel queda solo como preview opcional: no ejecuta PHP por defecto.
+
+CAMBIOS APLICADOS
+-----------------
+- Logout: destruye la sesion y elimina su cookie.
+- Login administrativo: limite basico de 10 intentos por ventana de 15 minutos.
+- Cambio de PIN: verifica en servidor que ID y codigo pertenecen al mismo bono.
+- PIN: formulario y backend exigen minimo seis caracteres.
+- Formulario ingles: envia lang=en para conservar idioma tras el envio.
+- Layout: URL canonica centralizada y JSON-LD de LocalBusiness.
+- Consulta de bono: noindex,nofollow por contener datos privados.
+- includes/.htaccess: bloquea acceso web directo a librerias y configuracion.
+- Demo estatica en /gestion-oficiovolt/: permite presentar el panel en Vercel
+	sin ejecutar PHP ni exponer el administrador real.
+- Build Astro validado correctamente con 32 paginas generadas.
+
+SECRETOS Y PRODUCCION
+---------------------
+mail-config.php e includes/config.php contienen secretos locales reales.
+Antes de publicar en IONOS hay que cambiar las claves SMTP y MySQL, revisar
+historiales y copias, y mover la configuracion fuera de public_html si el plan
+lo permite. Esta rotacion requiere acceso al proveedor y no se puede hacer de
+forma segura desde el repositorio. No copiar secretos a este archivo.
+
+PUBLICACION IONOS
+-----------------
+1. Ejecutar: cd astro-site, npm ci, npm run build.
+2. Subir el contenido de dist como raiz publica.
+3. Subir send.php, consulta-bono, gestion-oficiovolt e includes protegidos.
+4. Configurar PHP, PDO_MySQL, MySQL/MariaDB, HTTPS y SMTP.
+5. Crear configuracion privada y permisos de sesiones/rate limiting.
+6. Probar /, /contacto/, /en/, /consulta-bono/, /gestion-oficiovolt/,
+	 /robots.txt y /sitemap.xml antes de cambiar DNS.
+7. Conservar el despliegue anterior y un backup restaurable para rollback.
+
+CONTRATOS ACTUALES
+------------------
+- Contacto: POST /send.php con nombre, telefono, email, zona y mensaje.
+- Cliente: POST /consulta-bono/index.php con codigo y pin.
+- Administracion: login, sesion segura, CSRF en POST y logout por POST.
+- Nunca considerar pagado un servicio solo por visitar una ruta confirmada.
+
+PENDIENTES DE SIGUIENTE ITERACION
+---------------------------------
+- Instalar PHP/CI con runtime funcional y ejecutar php -l y pruebas integrales.
+- Rate limiting por usuario y MFA para el panel.
+- Esquema MySQL anonimizado, migraciones, indices y codigo de bono unico.
+- Saldo basado en movimientos auditables, no en edicion manual arbitraria.
+- Auditoria de login, PIN, saldo, estado y movimientos.
+- Webhook Stripe firmado e idempotente antes de activar bonos por pago.
+- Actualizar Astro y dependencias en staging, nunca con audit fix force directo.
+- Dividir Layout.astro, centralizar traducciones y generar sitemap validado.
+- Revisar consentimiento de cookies, rechazo, foco y reduced-motion.
+- CI con build, deteccion de secretos, lint PHP y smoke tests.
+
+VALIDACION REALIZADA
+--------------------
+- npm run build: correcto; 32 paginas generadas.
+- Layout y paginas Astro modificadas: sin errores detectados.
+- HTML: noindex en consulta-bono y JSON-LD presente.
+- Demo del panel: /gestion-oficiovolt/ generada correctamente como pagina 33.
+- PHP: pendiente de lint local; PHP 8.2/8.4 instalados pero Windows mantiene
+	un runtime Visual C++ antiguo incompatible. Hay que actualizar ese runtime
+	con permisos del sistema o ejecutar el lint en CI/IONOS.
+- IONOS, DNS, MySQL remoto, SMTP y Stripe: pendientes de staging.
+
+No incluir contrasenas, PINes, dumps de clientes ni tokens en esta documentacion.
+
+CREAR EL PRIMER ADMINISTRADOR
+-----------------------------
+Se ha anadido tools/create_admin.php. Ejecutarlo por SSH en IONOS desde la
+raiz del proyecto, nunca abrirlo desde el navegador:
+
+	php tools/create_admin.php
+
+El script pide usuario y contrasena, exige 12 caracteres como minimo y guarda
+la contrasena usando password_hash(). Si se pasa el usuario como argumento:
+
+	php tools/create_admin.php nombre_usuario
+
+Despues entrar en /gestion-oficiovolt/. No usar las credenciales MySQL como
+credenciales del panel. El script debe permanecer fuera de public_html o
+eliminarse despues de crear el administrador.

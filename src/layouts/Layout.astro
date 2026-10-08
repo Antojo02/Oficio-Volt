@@ -6,6 +6,25 @@ const {
   canonical = '/',
   robots = 'index,follow,max-image-preview:large'
 } = Astro.props;
+const siteUrl = 'https://oficiovolt.es';
+const canonicalUrl = siteUrl + canonical;
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'OficioVolt',
+  url: siteUrl,
+  telephone: '+34675970679',
+  email: 'info@oficiovolt.es',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Calle Asturias, Polígono La Capellanía',
+    addressLocality: 'Archena',
+    addressRegion: 'Murcia',
+    addressCountry: 'ES'
+  },
+  areaServed: ['Murcia', 'Molina de Segura', 'Fortuna', 'Alcantarilla', 'Blanca', 'Abarán', 'Cieza'],
+  serviceType: ['Electricista', 'Urgencias eléctricas', 'Telecomunicaciones', 'Domótica']
+};
 ---
 
 <!doctype html>
@@ -20,13 +39,14 @@ const {
     <meta property="og:site_name" content="OficioVolt" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={"https://oficiovolt.es" + canonical} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content="/assets/oficiovolt-logo-brand.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="/assets/oficiovolt-logo-brand.png" />
-    <link rel="canonical" href={"https://oficiovolt.es" + canonical} />
+    <link rel="canonical" href={canonicalUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)}></script>
     <link rel="icon" type="image/png" href="/assets/oficiovolt-icon.png" />
     <style is:global>
       :root {

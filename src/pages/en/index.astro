@@ -141,6 +141,7 @@ import Layout from '../../layouts/Layout.astro';
           <h3>Complete request</h3>
           <p>The more information you send at the start, the easier it is to give you a clear answer. If you are already a plan holder or registered client, include your identification details.</p>
           <form id="request-form" class="form" method="post" action="/send.php" data-greeting="Hello, I am contacting you from the OficioVolt website." data-labels='{"clientType": "Client type", "clientNumber": "Client number", "authCode": "Authorisation code", "serviceType": "Service type", "urgency": "Urgency level", "name": "Name", "phone": "Phone", "email": "Email", "area": "Area", "propertyType": "Property type", "media": "Media", "message": "Message"}'>
+            <input type="hidden" name="lang" value="en" />
             <label><span>Tipo de cliente</span><select name="clientType"><option value="nuevo">New customer</option><option value="registrado">Registered customer</option><option value="abonado">Plan holder</option><option value="autorizado">Authorised person</option></select></label>
             <label><span>Número de cliente</span><input name="clientNumber" /></label>
             <label><span>Código de autorización</span><input name="authCode" /></label>
