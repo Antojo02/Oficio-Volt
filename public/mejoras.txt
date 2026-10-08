@@ -22,6 +22,10 @@ CAMBIOS APLICADOS
 - includes/.htaccess: bloquea acceso web directo a librerias y configuracion.
 - Demo estatica en /gestion-oficiovolt/: permite presentar el panel en Vercel
 	sin ejecutar PHP ni exponer el administrador real.
+- .htaccess en la salida Astro: desactiva listados, aplica cabeceras y bloquea
+	archivos sensibles cuando se publique en Apache/IONOS.
+- .htaccess en la raiz y tools: protege configuraciones y herramientas CLI si
+	se sube el proyecto completo a un hosting Apache.
 - Build Astro validado correctamente con 32 paginas generadas.
 
 SECRETOS Y PRODUCCION
@@ -69,6 +73,8 @@ VALIDACION REALIZADA
 - Layout y paginas Astro modificadas: sin errores detectados.
 - HTML: noindex en consulta-bono y JSON-LD presente.
 - Demo del panel: /gestion-oficiovolt/ generada correctamente como pagina 33.
+- Area de clientes: se mantiene sin cambios funcionales en esta iteracion,
+  tal como se decidio; solo conserva noindex por privacidad.
 - PHP: pendiente de lint local; PHP 8.2/8.4 instalados pero Windows mantiene
 	un runtime Visual C++ antiguo incompatible. Hay que actualizar ese runtime
 	con permisos del sistema o ejecutar el lint en CI/IONOS.
