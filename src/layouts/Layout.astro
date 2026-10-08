@@ -1412,6 +1412,14 @@ const organizationSchema = {
         .cta-banner-copy p { font-size: .86rem; }
         .cta-banner-actions .btn { font-size: .84rem; padding-inline: 6px; }
       }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1497,19 +1505,19 @@ const organizationSchema = {
     <div id="cookie-banner" class="cookie-banner-backdrop" aria-live="polite" aria-hidden="true">
       <div class="cookie-banner" role="dialog" aria-modal="true" aria-labelledby="cookie-title">
         <h3 id="cookie-title">Aviso sobre cookies</h3>
-        <p>Utilizamos cookies para mejorar tu experiencia en la web, recordar tus preferencias y analizar uso básico del sitio. Al aceptar, das tu consentimiento para su uso.</p>
+        <p>Usamos almacenamiento local para recordar tu preferencia sobre este aviso y mejorar la navegación básica. No cargamos herramientas de analítica desde este sitio.</p>
 
         <div class="cookie-details" id="cookie-details">
-          <p><strong>Qué usamos:</strong> cookies técnicas, de preferencias y de análisis para mejorar la navegación y la experiencia básica.</p>
+          <p><strong>Qué usamos:</strong> almacenamiento local de preferencias. No se activan cookies de análisis o publicidad.</p>
           <ul>
-            <li>Cookies técnicas necesarias para que la web funcione.</li>
-            <li>Cookies para recordar opciones de navegación.</li>
-            <li>Cookies de análisis para medir uso de la web sin identificarte personalmente.</li>
+            <li>Preferencia local para no mostrar de nuevo este aviso.</li>
+            <li>No hay perfiles publicitarios ni herramientas de analítica cargadas.</li>
           </ul>
         </div>
 
         <div class="cookie-actions">
           <button class="btn btn-light" id="toggle-cookie-details" type="button" aria-expanded="false">Más información</button>
+          <button class="btn btn-light" id="reject-cookies" type="button">Rechazar</button>
           <button class="btn btn-primary" id="accept-cookies" type="button">Aceptar</button>
         </div>
       </div>
@@ -1538,6 +1546,7 @@ const organizationSchema = {
         const toggle = document.querySelector('.nav-toggle');
         const cookieBanner = document.getElementById('cookie-banner');
         const acceptCookies = document.getElementById('accept-cookies');
+        const rejectCookies = document.getElementById('reject-cookies');
         const toggleCookieDetails = document.getElementById('toggle-cookie-details');
         const cookieDetails = document.getElementById('cookie-details');
 
@@ -1570,6 +1579,13 @@ const organizationSchema = {
         if (acceptCookies) {
           acceptCookies.addEventListener('click', () => {
             setCookieConsent(true);
+            hideCookieBanner();
+          });
+        }
+
+        if (rejectCookies) {
+          rejectCookies.addEventListener('click', () => {
+            setCookieConsent(false);
             hideCookieBanner();
           });
         }

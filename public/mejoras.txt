@@ -75,6 +75,7 @@ VALIDACION REALIZADA
 - Demo del panel: /gestion-oficiovolt/ generada correctamente como pagina 33.
 - Area de clientes: se mantiene sin cambios funcionales en esta iteracion,
   tal como se decidio; solo conserva noindex por privacidad.
+- Accesibilidad: las animaciones y transiciones respetan prefers-reduced-motion.
 - PHP: pendiente de lint local; PHP 8.2/8.4 instalados pero Windows mantiene
 	un runtime Visual C++ antiguo incompatible. Hay que actualizar ese runtime
 	con permisos del sistema o ejecutar el lint en CI/IONOS.
