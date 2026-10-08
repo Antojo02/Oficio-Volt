@@ -45,6 +45,9 @@ import Layout from '../../layouts/Layout.astro';
     table { width: 100%; border-collapse: collapse; min-width: 560px; }
     th, td { padding: 13px 10px; border-bottom: 1px solid #e5e7eb; text-align: left; font-size: 14px; }
     th { color: var(--muted); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    .row-select { border: 0; padding: 0; background: transparent; color: #b45309; font: inherit; font-weight: 800; cursor: pointer; }
+    .row-select:hover, .row-select:focus-visible { text-decoration: underline; }
+    tr.is-selected { background: #fffaf0; }
     .status { display: inline-flex; padding: 5px 9px; border-radius: 999px; background: #ecfdf5; color: #047857; font-size: 12px; font-weight: 800; }
     .status.pending { background: #fff7ed; color: #c2410c; }
     .client-summary { display: grid; gap: 16px; }
@@ -101,31 +104,70 @@ import Layout from '../../layouts/Layout.astro';
           <h2>Últimos bonos creados</h2>
           <div class="table-wrap">
             <table>
-              <thead><tr><th>Código</th><th>Cliente</th><th>Estado</th><th>Disponible</th><th>Caducidad</th></tr></thead>
+              <thead><tr><th>Código</th><th>Cliente</th><th>Estado</th><th>Disponible</th><th>Caducidad</th><th></th></tr></thead>
               <tbody>
-                <tr><td>OV-2026-A7K2</td><td>Laura Martínez</td><td><span class="status">Activo</span></td><td>7,5 h</td><td>31/12/2026</td></tr>
-                <tr><td>OV-2026-M4P9</td><td>David Sánchez</td><td><span class="status">Activo</span></td><td>4 h</td><td>15/01/2027</td></tr>
-                <tr><td>OV-2026-R8T1</td><td>Casa Vega</td><td><span class="status pending">Pausado</span></td><td>10 h</td><td>03/03/2027</td></tr>
+                <tr data-client="laura"><td>OV-2026-A7K2</td><td>Laura Martínez</td><td><span class="status">Activo</span></td><td>7,5 h</td><td>31/12/2026</td><td><button class="row-select" type="button">Ver ficha</button></td></tr>
+                <tr data-client="david"><td>OV-2026-M4P9</td><td>David Sánchez</td><td><span class="status">Activo</span></td><td>4 h</td><td>15/01/2027</td><td><button class="row-select" type="button">Ver ficha</button></td></tr>
+                <tr data-client="casa"><td>OV-2026-R8T1</td><td>Casa Vega</td><td><span class="status pending">Pausado</span></td><td>10 h</td><td>03/03/2027</td><td><button class="row-select" type="button">Ver ficha</button></td></tr>
               </tbody>
             </table>
           </div>
         </section>
 
         <aside class="admin-card client-summary">
-          <h2>Cliente destacado</h2>
+          <h2>Ficha del bono</h2>
           <div>
-            <strong>Laura Martínez</strong>
-            <p class="admin-note">Bono OV-2026-A7K2 · Murcia</p>
+            <strong id="client-name">Laura Martínez</strong>
+            <p class="admin-note" id="client-meta">Bono OV-2026-A7K2 · Murcia</p>
           </div>
           <dl>
-            <div><dt>Usadas</dt><dd>2,5 h</dd></div>
-            <div><dt>Disponibles</dt><dd>7,5 h</dd></div>
+            <div><dt>Usadas</dt><dd id="client-used">2,5 h</dd></div>
+            <div><dt>Disponibles</dt><dd id="client-available">7,5 h</dd></div>
           </dl>
-          <div class="progress" aria-label="25 por ciento consumido"><span></span></div>
-          <p class="admin-note">Última actuación: revisión de cuadro eléctrico y ajuste de diferencial.</p>
+          <div class="progress" id="client-progress" aria-label="25 por ciento consumido"><span></span></div>
+          <p class="admin-note" id="client-last-action">Última actuación: revisión de cuadro eléctrico y ajuste de diferencial.</p>
+          <button class="btn btn-primary" type="button" id="demo-action">Añadir actuación (demo)</button>
           <a class="btn btn-light" href="/consulta-bono/">Abrir vista cliente</a>
         </aside>
       </div>
     </div>
   </main>
+
+  <script is:inline>
+    const demoClients = {
+      laura: { name: 'Laura Martínez', meta: 'Bono OV-2026-A7K2 · Murcia', used: '2,5 h', available: '7,5 h', progress: '25%', action: 'Última actuación: revisión de cuadro eléctrico y ajuste de diferencial.' },
+      david: { name: 'David Sánchez', meta: 'Bono OV-2026-M4P9 · Molina de Segura', used: '6 h', available: '4 h', progress: '60%', action: 'Última actuación: instalación de dos puntos de luz.' },
+      casa: { name: 'Casa Vega', meta: 'Bono OV-2026-R8T1 · Cieza', used: '0 h', available: '10 h', progress: '0%', action: 'Sin actuaciones registradas. Bono pausado temporalmente.' }
+    };
+    const clientName = document.getElementById('client-name');
+    const clientMeta = document.getElementById('client-meta');
+    const clientUsed = document.getElementById('client-used');
+    const clientAvailable = document.getElementById('client-available');
+    const clientProgress = document.querySelector('#client-progress span');
+    const clientLastAction = document.getElementById('client-last-action');
+    const demoAction = document.getElementById('demo-action');
+
+    function selectDemoClient(key) {
+      const client = demoClients[key];
+      if (!client) return;
+      clientName.textContent = client.name;
+      clientMeta.textContent = client.meta;
+      clientUsed.textContent = client.used;
+      clientAvailable.textContent = client.available;
+      clientProgress.style.width = client.progress;
+      clientProgress.parentElement.setAttribute('aria-label', `${client.progress} consumido`);
+      clientLastAction.textContent = client.action;
+      document.querySelectorAll('tbody tr[data-client]').forEach((row) => row.classList.toggle('is-selected', row.dataset.client === key));
+    }
+
+    document.querySelectorAll('tbody tr[data-client] .row-select').forEach((button) => {
+      button.addEventListener('click', () => selectDemoClient(button.closest('tr').dataset.client));
+    });
+    demoAction.addEventListener('click', () => {
+      demoAction.textContent = 'Actuación preparada (demo)';
+      demoAction.classList.remove('btn-primary');
+      demoAction.classList.add('btn-green');
+    });
+    selectDemoClient('laura');
+  </script>
 </Layout>

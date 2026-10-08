@@ -20,8 +20,8 @@ CAMBIOS APLICADOS
 - Layout: URL canonica centralizada y JSON-LD de LocalBusiness.
 - Consulta de bono: noindex,nofollow por contener datos privados.
 - includes/.htaccess: bloquea acceso web directo a librerias y configuracion.
-- Demo estatica en /gestion-oficiovolt/: permite presentar el panel en Vercel
-	sin ejecutar PHP ni exponer el administrador real.
+- Demo interactiva en /gestion-oficiovolt/: permite seleccionar cada bono,
+	ver su ficha y simular una actuacion sin ejecutar PHP ni tocar datos reales.
 - .htaccess en la salida Astro: desactiva listados, aplica cabeceras y bloquea
 	archivos sensibles cuando se publique en Apache/IONOS.
 - .htaccess en la raiz y tools: protege configuraciones y herramientas CLI si
