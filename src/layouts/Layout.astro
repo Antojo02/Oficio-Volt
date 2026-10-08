@@ -130,7 +130,8 @@ const organizationSchema = {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end;
-        gap: 12px;
+        column-gap: 28px;
+        row-gap: 12px;
       }
       .cookie-banner .btn {
         min-width: 150px;
@@ -1241,11 +1242,12 @@ const organizationSchema = {
         font-size: 13px;
         color: rgba(255,255,255,0.72);
       }
-      .footer-copy { justify-self: start; }
+      .footer-copy { grid-column: 1; justify-self: start; }
       .footer-credit { justify-self: end; color: rgba(219,228,240,0.72); font-size: 12px; }
       .footer-credit a { color: #fff; font-weight: 800; }
       .footer-credit a:hover { color: #fbbf24; }
-      .footer-policies { grid-column: auto; justify-self: center; display: flex; gap: 18px; align-items: center; white-space: nowrap; }
+      .footer-credit { grid-column: 3; }
+      .footer-policies { grid-column: 2; grid-row: 1; justify-self: center; display: flex; gap: 18px; align-items: center; white-space: nowrap; }
       /* language selector removed from footer */
       @media (max-width: 960px) {
         .footer-grid { grid-template-columns: 1fr; }
